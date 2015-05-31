@@ -12,45 +12,43 @@ class Render
 	public static function createRenderer(window:Pointer<Window>, 
 		index:Int, flags:Int):Pointer<Renderer>
 	{
-		return SDLRender.CreateRenderer(window, index, flags);
+		return SDL_Render.CreateRenderer(window, index, flags);
 	}
 
 	public static function createTexture(renderer:Pointer<Renderer>, 
 		surface:Pointer<SDLSurface>):Pointer<Texture>
 	{
-		return SDLRender.CreateTextureFromSurface(renderer, surface);
+		return SDL_Render.CreateTextureFromSurface(renderer, surface);
 	}
 
-	public static function renderClear(render:Pointer<Renderer>):Int
+	public static function renderClear(rendere:Pointer<Renderer>):Int
 	{
-		return SDLRender.RenderClear(render);
+		return SDL_Render.RenderClear(rendere);
 	}
 
-	public static function renderCopy(render:Pointer<Renderer>, 
+	public static function renderCopy(renderer:Pointer<Renderer>, 
 		texture:Pointer<Texture>, ?source:Rect, ?dest:Rect):Int
 	{
 		var result = -1;
-		untyped __cpp__("result = SDL_RenderCopy(render, texture, 
+		untyped __cpp__("result = SDL_RenderCopy(renderer, texture, 
 			&source->native, &dest->native)");
 		return result;
 	}
 
 	public static function renderPresent(render:Pointer<Renderer>):Void
 	{
-		SDLRender.RenderPresent(render);
+		SDL_Render.RenderPresent(render);
 	}
 }
 
 @:include("SDL2/SDL_render.h")
 @:native("SDL2/SDL_render")
-extern class SDLRender implements SdlExtern
+extern class SDL_Render implements SdlExtern
 {
-	public static function CreateRenderer(window:Pointer<Window>, 
-		index:Int, flags:Int):Pointer<Renderer>;
-	public static function CreateTextureFromSurface(renderer:Pointer<Renderer>, 
-		surface:Pointer<SDLSurface>):Pointer<Texture>;
-	public static function RenderClear(renderer:Pointer<Renderer>):Int;
-	public static function RenderPresent(renderer:Pointer<Renderer>):Void;
+	static function CreateRenderer(window:Pointer<Window>, index:Int, flags:Int):Pointer<Renderer>;
+	static function CreateTextureFromSurface(renderer:Pointer<Renderer>, surface:Pointer<SDLSurface>):Pointer<Texture>;
+	static function RenderClear(renderer:Pointer<Renderer>):Int;
+	static function RenderPresent(renderer:Pointer<Renderer>):Void;
 }
 
 @:native("SDL_Renderer") extern class Renderer{}

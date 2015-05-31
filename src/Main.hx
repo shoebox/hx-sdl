@@ -6,6 +6,7 @@ import sdl.Surface;
 import sdl.Video;
 using cpp.NativeString;
 import cpp.vm.Thread;
+import sdl.Sdl;
 
 @:buildXml('<include name="${haxelib:hsdl}/Build.xml"/>')
 class Main
@@ -29,7 +30,8 @@ class Main
 		// trace(quad3);
 
 		// trace(quad2.union(quad3));
-		var result = SDL.init(0x00000020);
+		var flags = SdlInitFlag.VIDEO;
+		var result = Sdl.init(0x00000020);
 		var window = Video.createWindow("toto", 0, 0, 640, 480, 0x00000004);
 		var ren = Render.createRenderer(window, -1, 0x00000002 | 0x00000004);
 		var bmp = Surface.loadBmp("/Users/johann.martinache/Desktop/massive/storefront-companion/lib/nme-dev/project/unpack/SDL2-2.0.3/test/controllermap.bmp");
@@ -42,7 +44,7 @@ class Main
 
 		Render.renderPresent(ren);
 
-		MessageBox.simple(MessageBoxType.ERROR, "toto", "caca", window);
+		MessageBox.simple(MessageBoxType.ERROR, "hello", "world", window);
 
 		SDLTimer.delay(200);
 	}
@@ -62,14 +64,6 @@ extern class Rw
 {
 	@:native("SDL_RWFromFile")
 	public static function fromFile(file:String, mode:String):Pointer<RWOps>;
-}
-
-@:include("SDL2/SDL.h")
-@:native("SDL2/SDL")
-extern class SDL
-{
-	@:native("SDL_Init")
-    public static function init(flag:Int):Int;
 }
 
 // @:include("SDL2/SDL_messagebox.h")
