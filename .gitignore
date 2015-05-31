@@ -1,0 +1,25 @@
+bin
+.temp
+lib
+
+# munit and mcover
+/.mcover
+TestSuite.hx
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+*.hxproj
+node_modules
+
+/.idea/
+
+*.iml
+
+#iOS
+*.a
+*.ipa
+*.so
+*.DSYM
+*.DSYM.zip

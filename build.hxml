@@ -1,0 +1,5 @@
+-cpp bin
+-main Main
+-cp src
+# -lib hxsdl
+-lib format
