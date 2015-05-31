@@ -21,30 +21,20 @@ class Main
 
 	static function run()
 	{
-		// var quad1 = new Rect(0, 0, 0, 0);
-		// var quad2 = new Rect(0, 0, 100, 100);
-		// var quad3 = new Rect(50, 50, 100, 100);
-
-		// trace(quad1);
-		// trace(quad2);
-		// trace(quad3);
-
-		// trace(quad2.union(quad3));
 		var flags = SdlInitFlag.VIDEO;
-		var result = Sdl.init(0x00000020);
+		var result = Sdl.init(flags);
 		var window = Video.createWindow("toto", 0, 0, 640, 480, 0x00000004);
-		var ren = Render.createRenderer(window, -1, 0x00000002 | 0x00000004);
-		var bmp = Surface.loadBmp("/Users/johann.martinache/Desktop/massive/storefront-companion/lib/nme-dev/project/unpack/SDL2-2.0.3/test/controllermap.bmp");
-		var tex = Render.createTexture(ren, bmp);
-		Render.renderClear(ren);
+		var renderer = Render.createRenderer(window, -1, Render.ACCELERATED | Render.PRESENTVSYNC);
+
+		var surface = Surface.loadBmp("/Users/johann.martinache/Desktop/massive/storefront-companion/lib/nme-dev/project/unpack/SDL2-2.0.3/test/controllermap.bmp");
+		var tex = renderer.createTexture(surface);
+		renderer.renderClear();
 		
 		var quad = new Rect(0, 0, 200, 200);
 		var dest = new Rect(100, 100, 200, 200);
-		var result = Render.renderCopy(ren, tex, quad, dest);
-
-		Render.renderPresent(ren);
-
-		MessageBox.simple(MessageBoxType.ERROR, "hello", "world", window);
+		var result = renderer.renderCopy(tex, quad, dest);
+		renderer.renderPresent();
+		// MessageBox.simple(MessageBoxType.ERROR, "hello", "world", window);
 
 		SDLTimer.delay(200);
 	}
