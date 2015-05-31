@@ -1,6 +1,6 @@
 <xml>
 	<files id='haxe'>
-		<!-- <compilerflag value='-I${haxelib:hsdl}/SDL2/include'/> -->
+		<compilerflag value='-I${haxelib:hsdl}/include'/>
 		<compilerflag value='-I${haxelib:hsdl}'/>
 		<!-- <compilerflag value="~/Desktop/shoebox/hsdl/sdl/include/" /> -->
 	</files>

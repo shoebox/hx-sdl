@@ -25,6 +25,9 @@ class Main
 		var result = Sdl.init(flags);
 		var window = Video.createWindow("toto", 0, 0, 640, 480, 0x00000004);
 		var renderer = Render.createRenderer(window, -1, Render.ACCELERATED | Render.PRESENTVSYNC);
+		trace("num = " + Render.getNumRenderDrivers());
+		trace(Render.getRenderDriverInfo(0));
+		trace(Render.getRenderDriverInfo(1));
 
 		var surface = Surface.loadBmp("/Users/johann.martinache/Desktop/massive/storefront-companion/lib/nme-dev/project/unpack/SDL2-2.0.3/test/controllermap.bmp");
 		var tex = renderer.createTexture(surface);
